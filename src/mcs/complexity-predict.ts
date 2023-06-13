@@ -2,22 +2,21 @@ import { getTicket } from "@/libs/zd";
 import { classify } from "@/libs/cohere";
 import { jsonToText } from "@/utils";
 
-export const predictComplexity = async (ticketId: number) => {
+const predictComplexity = async (ticketId: number) => {
   const { ticket } = await getTicket(ticketId);
   const simplifiedTicket = ticketDataForComplexityPrediction(ticket);
   const data = jsonToText(simplifiedTicket);
-  const modelId = "9edc304c-95f8-4437-bac6-520e19c2bcf5-ft"; // 006
+  const modelId = "9edc304c-95f8-4437-bac6-520e19c2bcf5-ft";
   const result = await classify(data, modelId);
-  return result;
+  console.dir(result, { depth: null });
 };
 
-export const ticketDataForComplexityPrediction = (ticket: any) => {
+const ticketDataForComplexityPrediction = (ticket: any) => {
   const {
     subject,
     description = "",
     organization_id,
     ticket_form_id,
-    custom_fields = [],
   } = ticket || {};
 
   const simplifiedTicket = {
@@ -35,5 +34,5 @@ export const ticketDataForComplexityPrediction = (ticket: any) => {
 };
 
 (async () => {
-  await predictComplexity(194012);
+  await predictComplexity(1234);
 })();
