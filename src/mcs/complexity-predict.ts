@@ -1,25 +1,17 @@
-import {
-  getTicket,
-} from "@/libs/zd";
-import {
-  classify,
-} from "@/libs/cohere";
+import { getTicket } from "@/libs/zd";
+import { classify } from "@/libs/cohere";
 import { jsonToText } from "@/utils";
-
 
 export const predictComplexity = async (ticketId: number) => {
   const { ticket } = await getTicket(ticketId);
   const simplifiedTicket = ticketDataForComplexityPrediction(ticket);
   const data = jsonToText(simplifiedTicket);
-  const modelId = "af126d99-e119-4f0c-9539-60d4e43d4c2a-ft";
+  const modelId = "9edc304c-95f8-4437-bac6-520e19c2bcf5-ft"; // 006
   const result = await classify(data, modelId);
   return result;
-}
+};
 
-export const ticketDataForComplexityPrediction = (
-  ticket: any,
-) => {
-
+export const ticketDataForComplexityPrediction = (ticket: any) => {
   const {
     subject,
     description = "",
@@ -42,6 +34,6 @@ export const ticketDataForComplexityPrediction = (
   return simplifiedTicket;
 };
 
-(async()=>{
+(async () => {
   await predictComplexity(194012);
- })();
+})();

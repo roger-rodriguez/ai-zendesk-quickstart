@@ -1,21 +1,20 @@
 const ZENDESK_SUB_DOMAIN = process.env.ZENDESK_SUB_DOMAIN;
 const ZENDESK_API_KEY = process.env.ZENDESK_API_KEY;
 
-
 type SearchTicketsByGroupInput = {
   group: string;
   updated?: string;
   created?: string;
   solved?: string;
   tags?: string[];
-}
+};
 
 export const getTicketComments = async (id: number) => {
   const zd = `https://${ZENDESK_SUB_DOMAIN}.zendesk.com/api/v2/tickets/${id}/comments`;
   const response = await fetch(zd, {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Basic ${ZENDESK_API_KEY}`,
+      "Authorization": `Basic ${ZENDESK_API_KEY}`,
     },
   });
   const { comments, next_page, previous_page, count } = await response.json();
@@ -35,7 +34,7 @@ export const getTicket = async (id: number) => {
   const response = await fetch(zd, {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Basic ${ZENDESK_API_KEY}`,
+      "Authorization": `Basic ${ZENDESK_API_KEY}`,
     },
   });
   const { ticket } = await response.json();
@@ -49,8 +48,6 @@ export const getTicket = async (id: number) => {
   );
   return { ticket };
 };
-
-
 
 export const searchTicketsByGroup = async ({
   group,
@@ -97,7 +94,7 @@ export const searchTicketsByGroup = async ({
       const response = await fetch(nextPageUrl, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Basic ${ZENDESK_API_KEY}`,
+          "Authorization": `Basic ${ZENDESK_API_KEY}`,
         },
       });
       const json = await response.json();

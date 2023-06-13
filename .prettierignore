@@ -1,0 +1,15 @@
+node_modules
+.next
+build
+dist
+*.tsbuildinfo
+*.gitignore
+*.svg
+*.lock
+*.npmignore
+.wrangler
+*.json
+*.csv
+
+# Anything that starts with a dot
+.*

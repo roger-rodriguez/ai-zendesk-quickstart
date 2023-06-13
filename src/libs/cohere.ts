@@ -4,9 +4,9 @@ export const classify = async (data: string, modelId: string) => {
   const options = {
     method: "POST",
     headers: {
-      accept: "application/json",
+      "accept": "application/json",
       "content-type": "application/json",
-      authorization: `Bearer ${COHERE_API_KEY} `,
+      "authorization": `Bearer ${COHERE_API_KEY} `,
     },
     body: JSON.stringify({
       model: modelId,
@@ -19,8 +19,8 @@ export const classify = async (data: string, modelId: string) => {
   const prediction = json.classifications[0]?.prediction;
   const confidence =
     (json.classifications[0]?.confidence * 100).toFixed(2) + "%";
-  const {input, labels, ...rest} = json?.classifications[0];
+  const { input, labels, ...rest } = json?.classifications[0];
   const result = { modelId, prediction, confidence };
   console.dir(result, { depth: null });
   return result;
-}
+};

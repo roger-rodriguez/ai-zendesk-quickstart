@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,md}\"",
     "mcs:download": "node --loader ts-node/esm -r tsconfig-paths/register -r dotenv/config ./src/mcs/download.ts",
     "mcs:complexity:ft": "node --loader ts-node/esm -r tsconfig-paths/register -r dotenv/config ./src/mcs/complexity-finetune.ts",
     "mcs:complexity": "node --loader ts-node/esm -r tsconfig-paths/register -r dotenv/config ./src/mcs/complexity-predict.ts"
@@ -23,7 +24,8 @@
     "ts-node": "10.9.1",
     "tsconfig-paths": "4.2.0",
     "dotenv": "16.1.4",
-    "typescript": "5.1.3"
+    "typescript": "5.1.3",
+    "prettier": "2.8.8"
   },
   "volta": {
     "node": "18.15.0",
