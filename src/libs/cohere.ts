@@ -16,11 +16,9 @@ export const classify = async (data: string, modelId: string) => {
 
   const res = await fetch(`https://api.cohere.ai/v1/classify`, options);
   const json = await res.json();
-  const prediction = json.classifications[0]?.prediction;
-  const confidence =
-    (json.classifications[0]?.confidence * 100).toFixed(2) + "%";
-  const { input, labels, ...rest } = json?.classifications[0];
+  const classification = json?.classifications[0];
+  const prediction = classification?.prediction;
+  const confidence = (classification?.confidence * 100).toFixed(2) + "%";
   const result = { modelId, prediction, confidence };
-  console.dir(result, { depth: null });
   return result;
 };
