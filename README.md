@@ -27,7 +27,7 @@ yarn
 4. Make a copy of the example environment variables file
 
 ```bash
-$ cp .env.example .env
+cp .env.example .env
 ```
 
 5. Add your [Cohere API Key](https://dashboard.cohere.ai/api-keys) to the newly created `.env` file
